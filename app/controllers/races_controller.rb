@@ -18,7 +18,6 @@ class RacesController < ApplicationController
   def create
     @race = Race.new(race_params)
     @race.user_id = current_user.id
-    @race.picture.attach(params[:race][:picture])
     if @race.save
       redirect_to @race
     else
@@ -48,7 +47,7 @@ class RacesController < ApplicationController
   private
 
   def race_params
-    params.require(:race).permit(:title, :description, :link, :date, :picture, :organizer, :swim, :bike, :run, :rating, :search,
+    params.require(:race).permit(:title, :description, :link, :date, :photo, :organizer, :swim, :bike, :run, :rating, :search,
                                  format: [])
   end
 end

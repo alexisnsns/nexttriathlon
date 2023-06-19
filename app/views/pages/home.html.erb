@@ -9,7 +9,7 @@
   <% end %>
   <% @races.order(:date).each do |race| %>
     <div class="card-product mb-3">
-      <img src="<%=(url_for(race.picture))%>" alt="race-picture" />
+      <%= cl_image_tag race.photo.key %>
       <div class="card-product-infos">
         <h2><%= link_to race.title.capitalize, race %></h2>
         <p>        (<%= race.format.gsub(/\[|\]|"/, '').split(',').map(&:strip).join(', ') %> - <%= race.date.strftime("%d/%m") %>)

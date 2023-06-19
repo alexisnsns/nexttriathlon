@@ -55,9 +55,11 @@ puts 'admin user added'
     user_id: User.all.sample.id
   )
 
+
+# set image in hard storage and seed it with it
   image_url = Faker::LoremFlickr.image(size: '200x200', search_terms: ['triathlon'])
   temp_file = URI.open(image_url)
-  race.picture.attach(io: temp_file, filename: 'image.jpg')
+  race.photo.attach(io: temp_file, filename: 'image.jpg', content_type: "image/jpeg")
   race.save!
   puts "race #{race.id} added"
 end

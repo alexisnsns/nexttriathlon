@@ -1,0 +1,30 @@
+<div class = "box">
+  <div>
+    <p>
+      <strong>Commenter:</strong>
+      <%= @comment.user.username.capitalize %>
+    </p>
+  </div>
+  <div>
+    <p>
+      <strong> Did you finish this race? In which year? </strong>
+      <%= @comment.date %>
+    </p>
+  </div>
+  <p>
+    <strong>About this race</strong>
+    <%= @comment.body %>
+  </p>
+  <p>
+    <strong> ✔ </strong>
+    <%= @comment.positive %>
+  </p>
+  <p>
+    <strong> ✘ </strong>
+    <%= @comment.negative %>
+  </p>
+  <p>
+    <strong> my grade </strong>
+    <%= @comment.rating %> / 5
+  </p>
+</div>

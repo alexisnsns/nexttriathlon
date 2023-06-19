@@ -1,0 +1,57 @@
+<div class="container" data-controller="loader">
+  <%= simple_form_for @race do |f| %>
+    <div>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <br>
+    <div>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %><br>
+    </div>
+    <br>
+    <%= f.label :format, 'Formats (pick multiple choices by holding the Cmd or Ctrl key)' %><br>
+    <%= f.select :format, options_for_select(["M", "L", "XL"]), {include_hidden: false}, {multiple: true} %>
+    <br>
+    <div>
+      <%= f.label :swim %><br>
+      <%= f.select :swim, ['Ocean/Sea', 'Lake']  %>
+    </div>
+    <br>
+    <div>
+      <%= f.label :bike %><br>
+      <%= f.select :bike, ['Flat','Rolling', 'Hilly']  %>
+    </div>
+    <br>
+    <div>
+      <%= f.label :run %><br>
+      <%= f.select :run, ['Flat', 'Rolling', 'Hilly']  %>
+    </div>
+    <br>
+    <div id="date-select">
+      <%= f.label :date %><br>
+      <%= f.date_field :date %><br>
+    </div>
+    <br>
+    <div>
+      <%= f.label :organizer %><br>
+      <%= f.text_area :organizer %>
+    </div>
+    <div>
+      <%= f.label :link, 'Link (start with wwww.)'  %><br>
+      <%= f.text_area :link %><br>
+    </div>
+    <br>
+    <div>
+      <%= f.label :photo %><br>
+      <%= f.file_field :photo, direct_upload: true %><br>
+    </div>
+    <br>
+    <div>
+      <button data-action="click->loader#displayLoader" class="btn btn-primary">
+        <%= f.submit "Create race", class:"btn btn-primary" %>
+      </button>
+    </div>
+  <% end %>
+  <%= render "loader" %>
+</div>

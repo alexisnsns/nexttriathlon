@@ -1,0 +1,9 @@
+<h1>Good to see you <%= @user.username.capitalize %>!</h1>
+<hr>
+<h2>Your infos:</h2>
+<hr>
+<ul>
+  <li>username: <strong><%= @user.username.capitalize %></strong></li>
+  <li>Email: <strong><%= @user.email %></strong></li>
+</ul>
+<a class="btn btn-outline-primary btn-sm" href="/users/edit">Edit your infos</a>
