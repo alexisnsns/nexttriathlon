@@ -1,86 +1,85 @@
-<div>
-  <%# PROFILE %>
-  <div>
-    <p> <%= @race.title.capitalize %> </p>
-    <%# race photo mandatory so delete condition? %>
-    <%= cl_image_tag @race.photo.key, class:"race-image" %>
-    <%# alt="race-image" width="300" height="300"> %>
-    <p> Description </p>
-    <p><%= @race.description.capitalize %></p>
-    <p>Format : <%= @race.format.join(' - ') %></p>
-    <p>Course profile </p>
-    <p> 🏊 Swim: <%= @race.swim %> </p>
-    <p> 🚴 Bike: <%= @race.bike %> </p>
-    <p> 🏃 Run: <%= @race.run %> </p>
-    <br>
-    <p> 📅 Date : <%= @race.date.strftime("%d/%m/%Y") %></p>
-    <p> Organizer: <%= @race.organizer.capitalize %></p>
-    <p> 🔗 Link to the race website </p>
-    <a href="http://<%= @race.link %>" target="_blank" class="btn btn-primary" > Website</a>
-    <%# RATING %>
-    <%# TD Put the avg rating in comments side %>
-    <% if @race.comments %>
-      <h2>Average rating: <%= number_with_precision(@race.comments.average(:rating), precision: 1) %> /5 </h2>
-    <% else %>
-      <p>This race has no rating yet</p>
-    <% end %>
-    Creator:
-    <%= @race.user.username.capitalize %>
+<div class="container">
+  <%# RACE PROFILE %>
+  <div class="card-product-show mb-3">
+    <%= cl_image_tag @race.photo.key, class:"race-image", alt:"race-image" %>
+    <div class="card-product-show-infos">
+      <h1> <%= @race.title.capitalize %> </h1>
+      <p>Format: <%= @race.format.join(' - ') %></p>
+      <p><%= @race.description.capitalize %></p>
+      <p> Race admin: <%= @race.user.username.capitalize %> </p>
+    </div>
+    <div class="card-product-show-infos">
+      <p>Course profile </p>
+      <p> 🏊 Swim: <%= @race.swim %> </p>
+      <p> 🚴 Bike: <%= @race.bike %> </p>
+      <p> 🏃 Run: <%= @race.run %> </p>
+    </div>
+    <div class="card-product-show-infos">
+      <p> 📅 Date: <%= @race.date.strftime("%d/%m/%Y") %></p>
+      <p> Organizer: <%= @race.organizer.capitalize %></p>
+      <a href="http://<%= @race.link %>" target="_blank" class="btn btn-primary" > Race Website</a>
+      <%# EDIT RACE %>
+      <% if @user == @race.user %>
+        <p> <%= button_to "Edit", edit_race_path(@race),  method: :get, class:"btn btn-primary" %> </p>
+      <% end %>
+    </div>
+    <%# MAP %>
+    <div style="width: 30%; height: 100%;"
+        data-controller="mapshow"
+        data-mapshow-marker-value="<%= @marker.to_json %>"
+        data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
-  <div style="width: 40%; height: 300px;"
-  data-controller="mapshow"
-  data-mapshow-marker-value="<%= @marker.to_json %>"
-  data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  <%# EDIT RACE %>
-  <% if @user == @race.user %>
-    <%= button_to "Edit", edit_race_path(@race),  method: :get, class:"btn btn-primary" %>
-  <% end %>
-</div>
-<%# COMMENTS %>
-<div>
-  <h2>What did the athletes think about this race?</h2>
-  <%# TD order comments by date published %>
-  <% @race.comments.order(:created_at).each do |comment| %>
-    <div>
-      <p>
-        <strong>Commenter:</strong>
-        <%= comment.user.username.capitalize %>
-      </p>
-      <p>
-        <strong> Did you finish this race? In which year? </strong>
-        <%= comment.date %>
-      </p>
-      <p>
-        <strong>About this race</strong>
-        <%= comment.body %>
-      </p>
-      <p>
-        <strong> ✔ </strong>
-        <%= comment.positive %>
-      </p>
-      <p>
-        <strong> ✘ </strong>
-        <%= comment.negative %>
-      </p>
-      <p>
-        <strong> my grade </strong>
-        <%= comment.rating %> / 5
-      </p>
-      <% if @user == comment.user %>
-        <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
-        <%= link_to "Delete this comment", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
+  <%# COMMENTS %>
+  <div>
+    <h2>What did the athletes think about this race?</h2>
+    <% @race.comments.order(:created_at).each do |comment| %>
+      <div>
+        <p>
+          <strong>Commenter:</strong>
+          <%= comment.user.username.capitalize %>
+        </p>
+        <p>
+          <strong> Did you finish this race? In which year? </strong>
+          <%= comment.date %>
+        </p>
+        <p>
+          <strong>About this race</strong>
+          <%= comment.body %>
+        </p>
+        <p>
+          <strong> ✔ </strong>
+          <%= comment.positive %>
+        </p>
+        <p>
+          <strong> ✘ </strong>
+          <%= comment.negative %>
+        </p>
+        <p>
+          <strong> My grade </strong>
+          <%= comment.rating %> / 5
+        </p>
+        <% if @user == comment.user %>
+          <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
+          <%= link_to "Delete this comment", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure?"
                     } %>
+        <% end %>
+      </div>
+    <% end %>
+    <%# RATING %>
+    <% if @race.comments.count > 0 %>
+      <h2>Average rating: <%= number_with_precision(@race.comments.average(:rating), precision: 1) %> /5 </h2>
+    <% else %>
+      <p>This race hasn't been rated yet</p>
+    <% end %>
+    <div>
+      <% if user_signed_in? %>
+        <%= render "comments/form", race: @race, comment: @comment %>
+      <% else %>
+        <%= button_to "Sign in", new_user_session_path, class:"btn btn-primary" %>
+        <p>Sign in to write a comment!</p>
       <% end %>
     </div>
-  <% end %>
-  <div>
-    <% if user_signed_in? %>
-      <%= render "comments/form", race: @race, comment: @comment %>
-    <% else %>
-      <%= button_to "Sign in", new_user_session_path %>
-      <p>Sign in to create a comment!</p>
-    <% end %>
   </div>
-</div>

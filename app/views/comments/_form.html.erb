@@ -1,30 +1,11 @@
-  <%=current_user.username%>&nbsp, tell us your thoughts!
+  <%=current_user.username.capitalize%>&nbsp, tell us your thoughts!
+<br>
 <%= simple_form_for [@race, @comment] do |f| %>
-  <p>
-    <p>
-      <%= f.label :date, "Did you finish this race? If so, in which year?" %>
-      <%= f.number_field :date, min: 0, max: 5 %>
-    </p>
-    <p>
-      <%= f.label :body, "What is your general opinion about the race?" %>
-      <%= f.text_area :body %>
-    </p>
-    <p>
-      <%= f.label :positive, "What did you like about it?" %>
-      <%= f.text_area :positive %>
-    </p>
-    <p>
-      <%= f.label :negative, "What could be done better next time?" %>
-      <div class = "commentaire">
-        <%# edit class name for full english %>
-        <%= f.text_area :negative %>
-      </div>
-    </p>
-    <p>
-      <%= f.label :rating, "On a scale from 1 to 5 how much would you recommend this race?" %>
-      <%= f.number_field :rating, min: 0, max: 5 %>
-    </p>
-  </p>
+  <%= f.input :date, collection: [2010, 2012, 2013, 2014, 2015],  include_blank: false , label: 'Did you finish this race? If so, in which year?' %>
+  <%= f.input :body, label: "What is your general opinion about the race?" %>
+  <%= f.input :positive, label: 'What did you like about it?' %>
+  <%= f.input :negative, label: "What could be done better next time?" %>
+  <%= f.input :rating, collection: [1, 2, 3, 4, 5],  include_blank: false, label: "On a scale from 1 to 5 how much would you recommend this race?" %>
   <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>
 <%# ajaxify the submit button %>
