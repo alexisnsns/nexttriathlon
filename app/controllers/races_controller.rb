@@ -9,6 +9,11 @@ class RacesController < ApplicationController
     @race = Race.find(params[:id])
     @user = current_user
     @comment = Comment.new
+
+    @marker = {
+      lat: @race.latitude,
+      lng: @race.longitude
+    }
   end
 
   def new
@@ -47,7 +52,7 @@ class RacesController < ApplicationController
   private
 
   def race_params
-    params.require(:race).permit(:title, :description, :link, :date, :photo, :organizer, :swim, :bike, :run, :rating, :search,
+    params.require(:race).permit(:title, :description, :address, :link, :date, :photo, :organizer, :swim, :bike, :run, :rating, :search,
                                  format: [])
   end
 end

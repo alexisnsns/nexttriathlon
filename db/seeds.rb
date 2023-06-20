@@ -13,8 +13,11 @@ puts 'All users destroyed'
 Comment.destroy_all
 puts 'All comments destroyed'
 
+ us_coordinates = JSON.parse(File.read("#{Rails.root}/db/us_coordinates.json")).shuffle!
+
+
 # 10 regular users
-10.times do
+3.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: "#{Faker::Internet.username(specifier: 5..8)}-#{rand(1000)}@yopmail.com",
@@ -32,16 +35,9 @@ user_admin = User.new(
 user_admin.save!
 puts "user admin #{user_admin.username} added"
 
-# 1 admin user
-User.new(
-  username: 'alex',
-  email: 'alex@gmail.com',
-  password: 'qwerty'
-)
-puts 'admin user added'
-
 # 20 races
-20.times do
+5.times do
+  coords = us_coordinates.pop
   race = Race.new(
     title: Faker::Lorem.sentence(word_count: 2),
     description: Faker::Hipster.paragraphs(number: 1).join,
@@ -52,11 +48,12 @@ puts 'admin user added'
     swim: %w[Ocean/Sea Lake].sample,
     run: %w[Flat Rolling Hilly].sample,
     format: %w[M L XL].sample,
+    address: Faker::Address.full_address,
+    latitude: coords[1],
+    longitude: coords[0],
     user_id: User.all.sample.id
   )
 
-
-# set image in hard storage and seed it with it
   image_url = Faker::LoremFlickr.image(size: '200x200', search_terms: ['triathlon'])
   temp_file = URI.open(image_url)
   race.photo.attach(io: temp_file, filename: 'image.jpg', content_type: "image/jpeg")
@@ -65,7 +62,7 @@ puts 'admin user added'
 end
 
 # 20 comments
-50.times do
+5.times do
   comment = Comment.create!(
     body: Faker::Hipster.paragraphs(number: 2).join,
     rating: rand(6),

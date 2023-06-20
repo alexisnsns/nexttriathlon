@@ -7,6 +7,10 @@
       </div>
     </div>
   <% end %>
+  <div style="width: 40%; height: 300px;"
+  data-controller="maphome"
+  data-maphome-markers-value="<%= @markers.to_json %>"
+  data-maphome-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   <% @races.order(:date).each do |race| %>
     <div class="card-product mb-3">
       <%= cl_image_tag race.photo.key %>

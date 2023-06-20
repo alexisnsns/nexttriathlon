@@ -9,6 +9,12 @@
     <%= f.input :run, collection: ['Flat','Rolling', 'Hilly']  %>
     <%= f.input :date, as: :date %>
     <%= f.input :organizer %>
+    <%= f.input :address %>
+    <%#= f.input :address,
+                :label_html => { :class => 'simple-form-label' },
+                input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+                %>
     <%= f.input :link, placeholder: 'www.race.org' %>
     <%= f.input :photo, as: :file %>
     <button data-action="click->loader#displayLoader" class="btn btn-primary">
