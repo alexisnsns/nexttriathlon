@@ -12,7 +12,7 @@
       <%= cl_image_tag race.photo.key %>
       <div class="card-product-infos">
         <h2><%= link_to race.title.capitalize, race %></h2>
-        <p>        (<%= race.format.gsub(/\[|\]|"/, '').split(',').map(&:strip).join(', ') %> - <%= race.date.strftime("%d/%m") %>)
+        <p> (<%= race.format.gsub(/\[|\]|"|\,/, '').split(' ').map(&:strip).join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
         </p>
         <p> 🏊 <%= race.swim %> 🚴 <%= race.bike %> 🏃 <%= race.run %></p>
       </div>

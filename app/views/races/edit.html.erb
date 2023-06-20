@@ -1,7 +1,10 @@
-<h1>Edit Race</h1>
-
 <%= render "form", race: @race %>
-<%= button_to 'Delete', race_path(@race), method: :delete %>
-
-<br><br><br>
-<b> <%= link_to "Main Page", root_path %></b>
+<div class= "container">
+  <br>
+  <%= link_to "Delete this race", race_path(@race), class: "btn btn-outline-danger", data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %>
+  <br>
+  <p> <%= link_to "Main Page", root_path %></p>
+</div>

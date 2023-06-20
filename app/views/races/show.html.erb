@@ -3,11 +3,11 @@
   <div>
     <p> <%= @race.title.capitalize %> </p>
     <%# race photo mandatory so delete condition? %>
-    <%= cl_image_tag @race.photo.key %>
+    <%= cl_image_tag @race.photo.key, class:"race-image" %>
     <%# alt="race-image" width="300" height="300"> %>
     <p> Description </p>
     <p><%= @race.description.capitalize %></p>
-    <p>Format : <%= @race.format.gsub(/\[|\]|"/, '').split(',').map(&:strip).join(', ') %></p>
+    <p>Format : <%= @race.format.gsub(/\[|\]|"|\,/, '').split(' ').map(&:strip).join(' - ') %></p>
     <p>Course profile </p>
     <p> 🏊 Swim: <%= @race.swim %> </p>
     <p> 🚴 Bike: <%= @race.bike %> </p>
@@ -30,10 +30,6 @@
   <%# EDIT - DELETE RACE %>
   <% if @user == @race.user %>
     <%= button_to "Edit", edit_race_path(@race),  method: :get, class:"btn btn-primary" %>
-    <%= link_to "Delete this race", race_path(@race), class: "btn btn-outline-danger", data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %>
   <% end %>
 </div>
 <%# COMMENTS %>
