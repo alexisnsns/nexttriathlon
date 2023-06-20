@@ -7,7 +7,7 @@
     <%# alt="race-image" width="300" height="300"> %>
     <p> Description </p>
     <p><%= @race.description.capitalize %></p>
-    <p>Format : <%= @race.format.gsub(/\[|\]|"|\,/, '').split(' ').map(&:strip).join(' - ') %></p>
+    <p>Format : <%= @race.format.join(' - ') %></p>
     <p>Course profile </p>
     <p> 🏊 Swim: <%= @race.swim %> </p>
     <p> 🚴 Bike: <%= @race.bike %> </p>

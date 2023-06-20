@@ -3,7 +3,7 @@ class CreateRaces < ActiveRecord::Migration[7.0]
     create_table :races do |t|
       t.string :title
       t.text :description
-      t.string :format
+      t.text :format, array: true
       t.string :organizer
       t.string :link
       t.string :swim

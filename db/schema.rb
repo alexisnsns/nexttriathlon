@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_091900) do
   create_table "races", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "format"
+    t.text "format", array: true
     t.string "organizer"
     t.string "link"
     t.string "swim"

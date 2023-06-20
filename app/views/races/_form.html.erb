@@ -3,7 +3,7 @@
   <%= simple_form_for @race do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :format, as: :check_boxes, collection: %i[M L XL] %>
+    <%= f.input :format, as: :check_boxes, collection: ["M","L","XL"] %>
     <%= f.input :swim, collection: ['Ocean/Sea', 'Lake']  %>
     <%= f.input :bike, collection: ['Flat','Rolling', 'Hilly']  %>
     <%= f.input :run, collection: ['Flat','Rolling', 'Hilly']  %>

@@ -23,6 +23,9 @@ class RacesController < ApplicationController
   def create
     @race = Race.new(race_params)
     @race.user_id = current_user.id
+    # delete the first item of array as i get an unknown "" as first item when data comes from the form
+    @race.format = @race.format.drop(1)
+
     if @race.save
       redirect_to @race
     else
