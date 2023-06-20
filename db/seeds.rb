@@ -47,7 +47,7 @@ puts "user admin #{user_admin.username} added"
     bike: %w[Flat Rolling Hilly].sample,
     swim: %w[Ocean/Sea Lake].sample,
     run: %w[Flat Rolling Hilly].sample,
-    format: [['L', 'XL'], ['M', 'L'], [ 'XL'], ['M', 'L', 'XL']].sample,
+    format: [['L','XL'],['M','L'],['XL'],['M','L','XL']].sample.to_a,
     address: Faker::Address.full_address,
     latitude: coords[1],
     longitude: coords[0],
