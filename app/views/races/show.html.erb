@@ -32,47 +32,38 @@
   </div>
   <%# COMMENTS %>
   <div>
-    <h2>What did the athletes think about this race?</h2>
-    <% @race.comments.order(:created_at).each do |comment| %>
-      <div>
-        <p>
-          <strong>Commenter:</strong>
-          <%= comment.user.username.capitalize %>
-        </p>
-        <p>
-          <strong> Did you finish this race? In which year? </strong>
-          <%= comment.date %>
-        </p>
-        <p>
-          <strong>About this race</strong>
-          <%= comment.body %>
-        </p>
-        <p>
-          <strong> ✔ </strong>
-          <%= comment.positive %>
-        </p>
-        <p>
-          <strong> ✘ </strong>
-          <%= comment.negative %>
-        </p>
-        <p>
-          <strong> My grade </strong>
-          <%= comment.rating %> / 5
-        </p>
-        <% if @user == comment.user %>
-          <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
-          <%= link_to "Delete this comment", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %>
-        <% end %>
-      </div>
-    <% end %>
+    <h2 class="text-center" >What did the athletes think about this race?</h2>
     <%# RATING %>
     <% if @race.comments.count > 0 %>
       <h2>Average rating: <%= number_with_precision(@race.comments.average(:rating), precision: 1) %> /5 </h2>
     <% else %>
       <p>This race hasn't been rated yet</p>
+    <% end %>
+    <% @race.comments.order(:created_at).each do |comment| %>
+      <div class="card-product-comment mb-3">
+        <div class="card-product-comment-infos">
+          <h2> Commenter: <%= comment.user.username.capitalize %> </h2>
+          <p> Raced in:  <%= comment.date %> </p>
+          <br>
+          <h2>  My grade </h2>
+          <p> <%= comment.rating %> / 5 </p>
+        </div>
+        <div class="card-product-comment-body">
+          <h2>About this race </h2>
+          <p><%= comment.body %> </p>
+        </div>
+        <div class="card-product-comment-infos">
+          <p>  ✔  <%= comment.positive %></p>
+          <p>  ✘ <%= comment.negative %></p>
+          <% if @user == comment.user %>
+            <p> <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
+              <%= link_to "Delete", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %> </p>
+          <% end %>
+        </div>
+      </div>
     <% end %>
     <div>
       <% if user_signed_in? %>

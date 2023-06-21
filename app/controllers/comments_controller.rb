@@ -6,6 +6,10 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.race_id = @race.id
+    @comment.positive = @comment.positive.capitalize
+    @comment.negative = @comment.negative.capitalize
+    @comment.body = @comment.body.capitalize
+
     if @comment.save
       redirect_to race_path(@race)
     else

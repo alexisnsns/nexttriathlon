@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3") do %>
+  <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3 mt-3") do %>
     <div class="input-group">
       <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control" %>
       <div class="input-group-append">

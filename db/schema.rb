@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_20_091900) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_21_084359) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_091900) do
     t.integer "rating"
     t.string "positive"
     t.string "negative"
-    t.integer "date"
+    t.string "date"
     t.bigint "user_id", null: false
     t.bigint "race_id", null: false
     t.datetime "created_at", null: false
