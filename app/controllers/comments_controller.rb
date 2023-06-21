@@ -18,10 +18,6 @@ class CommentsController < ApplicationController
     authorize @comment
   end
 
-  def show
-    # authorize @comment
-   end
-
   def destroy
     @comment.destroy
     authorize @comment
@@ -39,7 +35,6 @@ class CommentsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
     authorize @comment
-
   end
 
   private

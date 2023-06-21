@@ -4,7 +4,7 @@
   <br>
   <%= simple_form_for [@race, @comment] do |f| %>
     <% year = Time.now.year %>
-    <%= f.input :date, collection: ["I didn't race it/finish it", year, (year - 1), (year - 2), (year - 3), (year - 4), (year - 5), "< #{year - 5}"],  include_blank: false , label: 'Did you finish this race? If so, in which year?' %>
+    <%= f.input :date, collection: [("I didn't race it/finish it"), year, (year - 1), (year - 2), (year - 3), (year - 4), (year - 5), ("< #{year - 5}")],  include_blank: false , label: 'Did you finish this race? If so, in which year?' %>
     <%= f.input :body, label: "What is your general opinion about the race?" %>
     <%= f.input :positive, label: 'What did you like about it?' %>
     <%= f.input :negative, label: "What could be done better next time?" %>

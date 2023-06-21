@@ -68,7 +68,7 @@ end
     rating: rand(6),
     negative: 'very bad',
     positive: 'very nice',
-    date: rand(2019..2023),
+    date: rand(2019..2023).to_s,
     user_id: User.all.sample.id,
     race_id: Race.all.sample.id
   )
