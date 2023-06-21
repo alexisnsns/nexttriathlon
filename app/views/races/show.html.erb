@@ -43,9 +43,10 @@
     <% @race.comments.order(:created_at).each do |comment| %>
       <div class="card-product-comment mb-3">
         <div class="card-product-comment-infos">
-          <h2> Commenter: <%= comment.user.username.capitalize %> </h2>
-          <p> Raced in:  <%= comment.date %> </p>
-          <br>
+          <h2> Commenter: </h2>
+          <p> <%= comment.user.username.capitalize %></p>
+          <h2> Raced in: </h2>
+          <p><%= comment.date %> </p>
           <h2>  My grade </h2>
           <p> <%= comment.rating %> / 5 </p>
         </div>

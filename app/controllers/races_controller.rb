@@ -44,6 +44,8 @@ class RacesController < ApplicationController
 
   def update
     @race = Race.find(params[:id])
+    @race.format = @race.format.drop(1)
+
     if @race.update(race_params)
       redirect_to @race
     else
