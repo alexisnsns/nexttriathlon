@@ -10,7 +10,7 @@ class PagesController < ApplicationController
       {
         lat: race.latitude,
         lng: race.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {race: race}),
+        info_window_html: render_to_string(partial: "info_window", locals: { race: }),
         marker_html: render_to_string(partial: "marker")
       }
     end

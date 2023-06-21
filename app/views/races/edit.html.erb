@@ -1,10 +1,12 @@
 <%= render "form", race: @race %>
 <div class= "container">
   <br>
-  <%= link_to "Delete this race", race_path(@race), class: "btn btn-outline-danger", data: {
+  <% if policy(@race).destroy? %>
+    <%= link_to "Delete this race", race_path(@race), class: "btn btn-outline-danger", data: {
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure?"
                     } %>
+  <% end %>
   <br>
   <p> <%= link_to "Main Page", root_path %></p>
 </div>

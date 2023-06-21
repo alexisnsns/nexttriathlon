@@ -15,16 +15,22 @@ class CommentsController < ApplicationController
     else
       render 'races/show', status: :unprocessable_entity
     end
+    authorize @comment
   end
 
-  def show; end
+  def show
+    # authorize @comment
+   end
 
   def destroy
     @comment.destroy
+    authorize @comment
     redirect_to race_path(@race), status: :see_other
   end
 
-  def edit; end
+  def edit
+    authorize @comment
+  end
 
   def update
     if @comment.update(comment_params)
@@ -32,6 +38,8 @@ class CommentsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+    authorize @comment
+
   end
 
   private

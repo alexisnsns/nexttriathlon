@@ -19,7 +19,7 @@
       <p> Organizer: <%= @race.organizer.capitalize %></p>
       <a href="http://<%= @race.link %>" target="_blank" class="btn btn-primary" > Race Website</a>
       <%# EDIT RACE %>
-      <% if @user == @race.user %>
+      <% if policy(@race).edit? %>
         <p> <%= button_to "Edit", edit_race_path(@race),  method: :get, class:"btn btn-primary" %> </p>
       <% end %>
       <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Hi! Look at this triathlon race coming up !" data-hashtags="NextTriathlon" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
@@ -56,7 +56,7 @@
         <div class="card-product-comment-infos">
           <p>  ✔  <%= comment.positive %></p>
           <p>  ✘ <%= comment.negative %></p>
-          <% if @user == comment.user %>
+          <% if policy(comment).edit? %>
             <p> <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
               <%= link_to "Delete", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
                       turbo_method: :delete,

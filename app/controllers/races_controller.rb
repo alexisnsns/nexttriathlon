@@ -15,10 +15,12 @@ class RacesController < ApplicationController
       lng: @race.longitude,
       marker_html: render_to_string(partial: "marker")
     }
+    authorize @race
   end
 
   def new
     @race = Race.new
+    authorize @race
   end
 
   def create
@@ -32,10 +34,12 @@ class RacesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    authorize @race
   end
 
   def edit
     @race = Race.find(params[:id])
+    authorize @race
   end
 
   def update
@@ -45,12 +49,14 @@ class RacesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+    authorize @race
   end
 
   def destroy
     @race = Race.find(params[:id])
     @race.destroy
     redirect_to root_path, status: :see_other
+    authorize @race
   end
 
   private

@@ -3,18 +3,16 @@
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "bike.png" %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <% if action_name == "index" %>
-      <%= render "search_form" %>
-    <% end %>
+    <div class="nav-item-title">
+      <h2>Next Triathlon</h2>
+      <p>Find your next challenge</p>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <%= link_to "Your account", "/profiles/#{current_user.id}" %> &nbsp
-          <%= link_to "Add a race", "/races/new" %> &nbsp
-          <%= link_to "Log out", "/users/sign_out", data: {turbo_method: :delete} %>
+          <a> <%= link_to "My account", "/profiles/#{current_user.id}" %> &nbsp / &nbsp </a>
+          <a> <%= link_to "Add a race", "/races/new" %> &nbsp / &nbsp </a>
+          <a> <%= link_to "Log out", "/users/sign_out", data: {turbo_method: :delete} %> </a>
         </div>
       <% else %>
         <li class="nav-item">
