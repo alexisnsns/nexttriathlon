@@ -12,7 +12,8 @@ class RacesController < ApplicationController
 
     @marker = {
       lat: @race.latitude,
-      lng: @race.longitude
+      lng: @race.longitude,
+      marker_html: render_to_string(partial: "marker")
     }
   end
 

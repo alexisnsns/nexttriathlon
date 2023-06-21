@@ -13,7 +13,7 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/mapbox/outdoors-v12"
     })
     this.#addMarkerToMap()
     this.#fitMapToMarker()
@@ -24,6 +24,21 @@ export default class extends Controller {
       .setLngLat([this.markerValue.lng, this.markerValue.lat])
       .addTo(this.map)
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #fitMapToMarker() {
     const bounds = new mapboxgl.LngLatBounds()

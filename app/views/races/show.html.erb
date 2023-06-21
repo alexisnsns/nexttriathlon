@@ -22,6 +22,7 @@
       <% if @user == @race.user %>
         <p> <%= button_to "Edit", edit_race_path(@race),  method: :get, class:"btn btn-primary" %> </p>
       <% end %>
+      <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Hi! Look at this triathlon race coming up !" data-hashtags="NextTriathlon" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
     </div>
     <%# MAP %>
     <div style="width: 30%; height: 100%;"
@@ -69,8 +70,11 @@
       <% if user_signed_in? %>
         <%= render "comments/form", race: @race, comment: @comment %>
       <% else %>
-        <%= button_to "Sign in", new_user_session_path, class:"btn btn-primary" %>
-        <p>Sign in to write a comment!</p>
+        <div class="text-center">
+          <p>Sign in to write a comment!</p>
+          <%= button_to "Sign in", new_user_session_path, class:"btn btn-primary" %>
+        </div>
       <% end %>
     </div>
   </div>
+</div>
