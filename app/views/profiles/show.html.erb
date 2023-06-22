@@ -1,11 +1,49 @@
-<div class="container">
+<div class="container mt-5">
   <%= render "profiles/infos" %>
   <br>
   <hr>
   <h2>Your bookmarked races:</h2>
   <br>
   <hr>
-  <h2>Your comments:</h2>
+  <h2>Your races:</h2>
+  <% @user.races.order(:date).each do |race| %>
+    <div class="card-product mb-3">
+      <%= link_to race_path(race) do %>
+        <%= cl_image_tag race.photo.key %>
+        <div class="card-product-infos">
+          <h2><%= link_to race.title.capitalize, race %></h2>
+          <p> (<%= race.format.drop(1).join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
+          </p>
+          <p> <i class="fa-solid fa-person-swimming"></i> &nbsp<%= race.swim %> <i class="fa-solid fa-person-biking"></i> &nbsp <%= race.bike %> <i class="fa-solid fa-person-running"></i> &nbsp <%= race.run %></p>
+        </div>
+        <div class="card-product-infos">
+          <p> <%= button_to "Edit", edit_race_path(race),  method: :get, class:"btn btn-primary" %> </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <br>
   <hr>
-  <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger btn-sm" %>
-</div>
+  <h2>Your comments:</h2>
+  <% @user.comments.order(:race_id).each do |comment|  %>
+    <div class="card-product-comment mb-3">
+      <div class="card-product-comment-infos">
+        <%= comment.race.title %>
+        <h2> Raced in: </h2>
+        <p><%= comment.date %> </p>
+        <h2>  My grade </h2>
+        <p> <%= comment.rating %> / 5 </p>
+      </div>
+      <div class="card-product-comment-body">
+        <h2>About this race </h2>
+        <p><%= comment.body %> </p>
+      </div>
+      <div class="card-product-comment-infos">
+        <p>  ✔  <%= comment.positive %></p>
+        <p>  ✘ <%= comment.negative %></p>
+        <p> <%= button_to "Edit", edit_race_comment_path(comment.race, comment),  method: :get, class:"btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <hr>
+    <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger btn-sm" %>

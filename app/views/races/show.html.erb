@@ -4,7 +4,7 @@
     <%= cl_image_tag @race.photo.key, class:"race-image", alt:"race-image" %>
     <div class="card-product-show-infos">
       <h1> <%= @race.title.capitalize %> </h1>
-      <p>Format: <%= @race.format.join(' - ') %></p>
+      <p>Format: <%= @race.format.drop(1).join(' - ') %></p>
       <p><%= @race.description.capitalize %></p>
       <p> Race admin: <%= @race.user.username.capitalize %> </p>
     </div>
@@ -58,8 +58,8 @@
           <p>  ✔  <%= comment.positive %></p>
           <p>  ✘ <%= comment.negative %></p>
           <% if policy(comment).edit? %>
-            <p> <%= link_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
-              <%= link_to "Delete", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
+            <p> <%= button_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
+              <%= button_to "Delete", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure?"
                     } %> </p>

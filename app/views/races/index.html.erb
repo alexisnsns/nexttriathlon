@@ -1,23 +1,22 @@
 <div class="container">
   <div class="col-sm">
-    <h4 class="mt-3"><%= @races.size %> available races</h4>
-    <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3 mt-3") do %>
-      <div class="input-group">
-        <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control" %>
-        <div class="input-group-append">
-          <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
     <div class="row">
       <div class="col-sm-7">
+        <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3 mt-5 mb-5") do %>
+          <div class="input-group">
+            <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control bg-white" %>
+            <div class="input-group-append">
+              <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
         <% @races.order(:date).each do |race| %>
           <div class="card-product mb-3">
             <%= link_to race_path(race) do %>
               <%= cl_image_tag race.photo.key %>
               <div class="card-product-infos">
                 <h2><%= link_to race.title.capitalize, race %></h2>
-                <p> (<%= race.format.join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
+                <p> (<%= race.format.drop(1).join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
                 </p>
                 <p> <i class="fa-solid fa-person-swimming"></i> &nbsp<%= race.swim %> <i class="fa-solid fa-person-biking"></i> &nbsp <%= race.bike %> <i class="fa-solid fa-person-running"></i> &nbsp <%= race.run %></p>
               </div>
@@ -25,8 +24,8 @@
           <% end %>
         <% end %>
       </div>
-      <div class="col-sm-5">
-        <div style="width: 100%; height: 50%;"
+      <div class="col-sm-5 mt-5">
+        <div id="map-index" style="width: 100%; height: 70%;"
           data-controller="maphome"
           data-maphome-markers-value="<%= @markers.to_json %>"
           data-maphome-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
