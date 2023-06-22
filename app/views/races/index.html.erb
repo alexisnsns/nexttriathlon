@@ -13,14 +13,16 @@
       <div class="col-sm-7">
         <% @races.order(:date).each do |race| %>
           <div class="card-product mb-3">
-            <%= cl_image_tag race.photo.key %>
-            <div class="card-product-infos">
-              <h2><%= link_to race.title.capitalize, race %></h2>
-              <p> (<%= race.format.join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
-              </p>
-              <p> 🏊 <%= race.swim %> 🚴 <%= race.bike %> 🏃 <%= race.run %></p>
+            <%= link_to race_path(race) do %>
+              <%= cl_image_tag race.photo.key %>
+              <div class="card-product-infos">
+                <h2><%= link_to race.title.capitalize, race %></h2>
+                <p> (<%= race.format.join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
+                </p>
+                <p> <i class="fa-solid fa-person-swimming"></i> &nbsp<%= race.swim %> <i class="fa-solid fa-person-biking"></i> &nbsp <%= race.bike %> <i class="fa-solid fa-person-running"></i> &nbsp <%= race.run %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
       <div class="col-sm-5">

@@ -7,27 +7,27 @@
 }
 
 .home-img {
-  height: 965px;
+  height: 110%;
   width: 100%;
   object-fit: cover
 }
 
 .text-intro {
-  position: relative;
-  bottom: 839px;
+  position: absolute;
+  top: 155px;
   width: 25%;
   height: 400px;
-  margin-left: 20px;
+  margin-left: 89px;
   overflow: hidden;
-  padding-left: 10px;
   text-align: justify;
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
 
 .footer-home {
-  position: relative;
-  bottom: 170px;
+  position: absolute;
+  bottom: 1%;
+  left: 22px;
 }
 
 
