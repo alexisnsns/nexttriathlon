@@ -1,25 +1,11 @@
-<div class="container">
-  <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3 mt-3") do %>
-    <div class="input-group">
-      <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control" %>
-      <div class="input-group-append">
-        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-      </div>
+<body scroll="no" style="overflow: hidden">
+  <div class="home-container">
+    <%= image_tag "main1.jpg", class:"home-img" %>
+    <div class="text-intro">
+      <p>With so many options out here, it has always been a hassle to pick your next triathlon race. </p>
+      <p> <strong>How much elevation gain? How much will it cost me? How many participants? </strong></p>
+      <p>Browse through dozens of races and find the one which fits you best, curated by our community.</p>
+      <%= button_to "Find the perfect race", races_path, method: :get, class:"btn btn-primary race-btn"  %>
     </div>
-  <% end %>
-  <div style="width: 40%; height: 300px;"
-  data-controller="maphome"
-  data-maphome-markers-value="<%= @markers.to_json %>"
-  data-maphome-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  <% @races.order(:date).each do |race| %>
-    <div class="card-product mb-3">
-      <%= cl_image_tag race.photo.key %>
-      <div class="card-product-infos">
-        <h2><%= link_to race.title.capitalize, race %></h2>
-        <p> (<%= race.format.join(' - ') %> / <%= race.date.strftime("%d-%m") %>)
-        </p>
-        <p> 🏊 <%= race.swim %> 🚴 <%= race.bike %> 🏃 <%= race.run %></p>
-      </div>
-    </div>
-  <% end %>
-</div>
+  </div>
+</body>

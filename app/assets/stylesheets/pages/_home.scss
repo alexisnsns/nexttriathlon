@@ -1,1 +1,35 @@
 // Specific CSS for your home-page
+
+.home-container {
+  position: relative;
+  top: -75px;
+  height: 965px;
+}
+
+.home-img {
+  height: 965px;
+  width: 100%;
+  object-fit: cover
+}
+
+.text-intro {
+  position: relative;
+  bottom: 839px;
+  width: 25%;
+  height: 400px;
+  margin-left: 20px;
+  overflow: hidden;
+  padding-left: 10px;
+  text-align: justify;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+
+.footer-home {
+  position: relative;
+  bottom: 170px;
+}
+
+
+// .race-btn {
+// }

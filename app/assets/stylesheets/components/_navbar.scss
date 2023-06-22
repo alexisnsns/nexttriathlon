@@ -1,13 +1,15 @@
-$navbar-height: 100px;
+$navbar-height: 75px;
 $btn-color: #670AFF;
 
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: transparent;
   position: sticky;
   top: 0;
   z-index: 100;
   height: $navbar-height;
+  font-family: 'IBM Plex Sans', sans-serif;
+
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -16,11 +18,8 @@ $btn-color: #670AFF;
 
 .navbar-lewagon .navbar-brand img {
   width: 130px;
-}
-
-.navbar-brand img {
-  border-radius: 10%;
-  margin-left: 1.5em;
+  left: -68px;
+  position: relative;
 }
 
 .btn-login {
@@ -41,9 +40,13 @@ $btn-color: #670AFF;
 
 
 .nav-item-title {
-  position: absolute;
-  left: 180px;
-  top: 17px;
+  position: relative;
+  left: -735px;
+  top: 5px;
+}
+
+.nav-item-title h2 {
+  line-height: 25px;
 }
 
 

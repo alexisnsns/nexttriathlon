@@ -1,5 +1,15 @@
-<% unless action_name == "edit" %>
+<% unless action_name == "edit" || action_name == "home" %>
   <div class="footer">
+    <div class="footer-links">
+      Send us your suggestions via email
+      <a href="mailto: hello@alexisns.com"><i class="fa-solid fa-envelope"></i></a>
+      or contribute to the website
+      <a href="https://github.com/alexisnsns/nexttriathlon"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+<% end %>
+<% if action_name == "home" %>
+  <div class="footer footer-home">
     <div class="footer-links">
       Send us your suggestions via email
       <a href="mailto: hello@alexisns.com"><i class="fa-solid fa-envelope"></i></a>

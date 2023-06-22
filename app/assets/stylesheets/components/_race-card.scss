@@ -113,6 +113,15 @@
   padding: 16px;
 }
 
+
+.race-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 5%;
+  border: 0.5px solid black;
+}
+
+
 // comment form
 
 .card-product-comment-form {
@@ -121,4 +130,15 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
   padding: 10px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+
+  .card-product-show img,
+  .race-image,
+  .race-show-map {
+    display: none;
+  }
 }

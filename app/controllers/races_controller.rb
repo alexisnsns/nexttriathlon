@@ -1,12 +1,25 @@
 class RacesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  before_action :find_race, only: %i[show edit update destroy]
 
-  # def index
-  #   @races = Race.all
-  # end
+  def index
+    @races = if params[:search]
+               Race.search(params[:search]).order('created_at DESC')
+             else
+               Race.all.geocoded
+             end
+
+    @markers = @races.geocoded.map do |race|
+      {
+        lat: race.latitude,
+        lng: race.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { race: }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
+  end
 
   def show
-    @race = Race.find(params[:id])
     @user = current_user
     @comment = Comment.new
 
@@ -38,14 +51,11 @@ class RacesController < ApplicationController
   end
 
   def edit
-    @race = Race.find(params[:id])
     authorize @race
   end
 
   def update
-    @race = Race.find(params[:id])
     @race.format = @race.format.drop(1)
-
     if @race.update(race_params)
       redirect_to @race
     else
@@ -55,7 +65,6 @@ class RacesController < ApplicationController
   end
 
   def destroy
-    @race = Race.find(params[:id])
     @race.destroy
     redirect_to root_path, status: :see_other
     authorize @race
@@ -66,5 +75,9 @@ class RacesController < ApplicationController
   def race_params
     params.require(:race).permit(:title, :description, :address, :link, :date, :photo, :organizer, :swim, :bike, :run, :rating, :search,
                                  format: [])
+  end
+
+  def find_race
+    @race = Race.find(params[:id])
   end
 end
