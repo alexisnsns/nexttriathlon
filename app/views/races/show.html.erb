@@ -59,10 +59,7 @@
           <p>  ✘ <%= comment.negative %></p>
           <% if policy(comment).edit? %>
             <p> <%= button_to "Edit", edit_race_comment_path(@race, comment),  method: :get, class:"btn btn-primary" %>
-              <%= button_to "Delete", race_comment_path(@race, comment), class: "btn btn-outline-danger", data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %> </p>
+            </p>
           <% end %>
         </div>
       </div>

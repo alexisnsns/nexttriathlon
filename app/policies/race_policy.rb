@@ -13,6 +13,10 @@ class RacePolicy < ApplicationPolicy
     true
   end
 
+  def bookmark?
+    true
+  end
+
   def update?
     record.user == user
   end

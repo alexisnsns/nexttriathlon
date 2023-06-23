@@ -20,6 +20,14 @@
                 </p>
                 <p> <i class="fa-solid fa-person-swimming"></i> &nbsp<%= race.swim %> <i class="fa-solid fa-person-biking"></i> &nbsp <%= race.bike %> <i class="fa-solid fa-person-running"></i> &nbsp <%= race.run %></p>
               </div>
+              <div class="card-product-infos">
+                <span>
+                  <%= link_to bookmark_path(race), method: 'patch' do %>
+                    <i class="fa-regular fa-bookmark"></i>
+                  <% end %>
+                  <p><%= race.bookmarks.count %> user(s) bookmarked this race </p>
+                </span>
+              </div>
             </div>
           <% end %>
         <% end %>

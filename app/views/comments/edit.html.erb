@@ -1,2 +1,13 @@
 <h1>Edit Comment</h1>
 <%= render "form", comment: @comment, race: @race %>
+<div class= "container">
+  <br>
+  <% if policy(@comment).destroy? %>
+    <%= link_to "Delete this comment", race_comment_path(@race, @comment), class: "btn btn-outline-danger", data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %>
+  <% end %>
+  <br>
+  <p> <%= link_to "Main Page", root_path %></p>
+</div>

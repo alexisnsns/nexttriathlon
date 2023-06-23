@@ -1,6 +1,6 @@
 class RacesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :find_race, only: %i[show edit update destroy]
+  before_action :find_race, only: %i[show edit update destroy bookmark]
 
   def index
     @races = if params[:search]
@@ -66,6 +66,18 @@ class RacesController < ApplicationController
   def destroy
     @race.destroy
     redirect_to root_path, status: :see_other
+    authorize @race
+  end
+
+  def bookmark
+    @race_bookmark = @race.bookmarks.find_by(user_id: current_user)
+    if @race_bookmark
+      @race_bookmark.destroy
+    else
+      new_bookmark = Bookmark.create(user_id: current_user.id, race_id: @race.id)
+      @race.bookmarks << new_bookmark
+    end
+    redirect_to races_path
     authorize @race
   end
 

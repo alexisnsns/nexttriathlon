@@ -28,9 +28,9 @@ puts 'All comments destroyed'
 end
 
 user_admin = User.new(
-  username: 'alex',
-  email: 'alex@gmail.com',
-  password: 'alex'
+  username: 'alexis',
+  email: 'alexis@gmail.com',
+  password: 'alexis'
 )
 user_admin.save!
 puts "user admin #{user_admin.username} added"
