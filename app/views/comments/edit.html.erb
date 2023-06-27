@@ -1,6 +1,6 @@
-<h1>Edit Comment</h1>
+<h1 class="container mt-5">Edit Comment</h1>
 <%= render "form", comment: @comment, race: @race %>
-<div class= "container">
+<div class= "mt-5">
   <br>
   <% if policy(@comment).destroy? %>
     <%= link_to "Delete this comment", race_comment_path(@race, @comment), class: "btn btn-outline-danger", data: {
@@ -9,5 +9,6 @@
                     } %>
   <% end %>
   <br>
-  <p> <%= link_to "Main Page", root_path %></p>
+</div>
+<%# closes the container div opened in form.html %>
 </div>
