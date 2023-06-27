@@ -1,6 +1,5 @@
-// app/javascript/controllers/map_controller.js
 import { Controller } from "@hotwired/stimulus"
-import mapboxgl from 'mapbox-gl' // Don't forget this!
+import mapboxgl from 'mapbox-gl'
 
 export default class extends Controller {
   static values = {
@@ -20,15 +19,16 @@ export default class extends Controller {
   }
 
   #addMarkerToMap() {
+    // const customMarker = document.createElement("div");
+
+    // let html = `<img src='https://res.cloudinary.com/dg7xujo5u/image/upload/v1687188037/development/wch5pqh8duytrei4ycidsydkjbpm.png' alt='Logo'>`;
+    // customMarker.innerHTML = html;
+
+    // pass customMarker as argument
     new mapboxgl.Marker()
       .setLngLat([this.markerValue.lng, this.markerValue.lat])
       .addTo(this.map)
   }
-
-
-
-
-
 
 
 

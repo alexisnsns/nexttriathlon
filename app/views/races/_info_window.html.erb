@@ -1,4 +1,2 @@
-<p><%= link_to race.title.capitalize, race %></p>
-<p><%= race.format.join(' - ') %></p>
-
-
+<%= link_to race.title.capitalize, race %>
+(<%= race.format.drop(1).join(' - ')  %>)
