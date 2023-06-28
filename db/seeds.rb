@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'faker'
 require 'uri'
 
@@ -13,11 +11,10 @@ puts 'All users destroyed'
 Comment.destroy_all
 puts 'All comments destroyed'
 
- us_coordinates = JSON.parse(File.read("#{Rails.root}/db/us_coordinates.json")).shuffle!
-
+us_coordinates = JSON.parse(File.read("#{Rails.root}/db/us_coordinates.json")).shuffle!
 
 # 10 regular users
-3.times do
+2.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: "#{Faker::Internet.username(specifier: 5..8)}-#{rand(1000)}@yopmail.com",
@@ -35,8 +32,33 @@ user_admin = User.new(
 user_admin.save!
 puts "user admin #{user_admin.username} added"
 
+
+race = Race.new(
+  title: 'Pennsylvania Happy Valley',
+  description: "Located in the middle of beautiful Pennsylvania scenery just a few hours' drive or a short flight away.  Head to Penns Valley and Penn’s Cave & Wildlife Park for a boat ride tour through America’s ONLY All-Water Cavern & Farm-Nature-Wildlife Park! Be sure to stop in at the American Philatelic Center, for a free tour, at the largest stamp collecting facility in the world.  Whatever one’s definition of adventure is, we believe it can be found here in Happy Valley, Pennsylvania.",
+  organizer: 'ironman',
+  link: "https://www.ironman.com/im703-pennsylvania",
+  date: Faker::Time.forward(days: 23, period: :morning),
+  swim: 'Lake',
+  bike: 'Ocean',
+  run: 'Rolling',
+  format: ['','L'].to_a,
+  address: 'State College, PA 16801, United States',
+  latitude: 40.805231396952315,
+  longitude: -77.86038220287077,
+  user_id: User.all.sample.id
+)
+
+image_url = 'https://ironman.kleecks-cdn.com/cdn1/attachments/photo/5554-179123421/IM_703Pennsylvania_Logo_Full_large.png'
+temp_file = URI.open(image_url)
+race.photo.attach(io: temp_file, filename: 'image.jpg', content_type: "image/jpeg")
+race.save!
+puts "race #{race.id} added"
+
+
+
 # 20 races
-5.times do
+1.times do
   coords = us_coordinates.pop
   race = Race.new(
     title: Faker::Lorem.sentence(word_count: 2),
@@ -62,7 +84,7 @@ puts "user admin #{user_admin.username} added"
 end
 
 # 20 comments
-5.times do
+1.times do
   comment = Comment.create!(
     body: Faker::Hipster.paragraphs(number: 2).join,
     rating: rand(6),

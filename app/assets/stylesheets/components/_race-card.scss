@@ -36,7 +36,7 @@
 .card-product-show {
   margin-top: 15px;
   overflow: hidden;
-  height: 350px;
+  // height: 350px;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -66,6 +66,10 @@
 
 .card-product-show-infos {
   width: 30%;
+}
+
+.card-product-show-infos-bis {
+  width: 60%;
 }
 
 .card-product-show .card-product-show-infos {
