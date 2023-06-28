@@ -30,6 +30,15 @@
   left: 22px;
 }
 
+@media only screen and (max-width: 800px) {
+  .text-intro {
+    font-size: 10px;
+    width: 60%;
+    margin-top: 45px;
+  }
+}
+
+
 
 // .race-btn {
 // }
