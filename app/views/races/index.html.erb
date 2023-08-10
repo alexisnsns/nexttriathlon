@@ -4,7 +4,7 @@
       <div class="col-sm-7">
         <%= form_tag(@race_path, method: "get", id: "search-form", class: "form-inline mb-3 mt-5 mb-5") do %>
           <div class="input-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control bg-white" %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control bg-white" %>
             <div class="input-group-append">
               <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
             </div>
