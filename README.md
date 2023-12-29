@@ -1,1 +1,1 @@
-find your next triathlon race. 
+Find your next triathlon race, rated by the community. 
